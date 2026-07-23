@@ -1,0 +1,12 @@
+streamlit>=1.40
+google-genai>=1.0
+gTTS>=2.5
+pypdf>=5.0
+pandas>=2.3.3
+numpy>=2.3.4
+openpyxl>=3.1
+python-dotenv>=1.0
+fastapi>=0.115
+uvicorn>=0.34
+requests>=2.32.3
+python-multipart>=0.0.9
