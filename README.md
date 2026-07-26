@@ -70,6 +70,22 @@ genai-doc-assistant/
    Interactive docs at <http://localhost:8000/docs>. Endpoints:
    `GET /languages`, `POST /translate`, `POST /tts`, `POST /extract-text`.
 
+## Deployment (Streamlit Community Cloud)
+
+The app is deployed from this GitHub repo via
+[Streamlit Community Cloud](https://share.streamlit.io) (free):
+
+1. Sign in at <https://share.streamlit.io> with GitHub.
+2. **Create app** → choose this repo, branch `master`, main file `main.py`.
+3. Under **Advanced settings → Secrets**, add:
+
+   ```toml
+   GEMINI_API_KEY = "your-api-key-here"
+   ```
+
+4. Click **Deploy**. The app gets a public
+   `https://<name>.streamlit.app` URL; pushes to `master` auto-redeploy.
+
 ## Notes
 
 - Both Gemini and gTTS require an internet connection.
