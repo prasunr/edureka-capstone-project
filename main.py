@@ -33,7 +33,7 @@ with st.sidebar:
     st.header("Settings")
     api_key = get_gemini_api_key()
     if api_key:
-        st.success("Gemini API key loaded from .env")
+        st.success("Gemini API key configured ✓")
     else:
         api_key = st.text_input(
             "Gemini API key",
