@@ -1,0 +1,4 @@
+# Development / testing dependencies
+pytest>=8.0
+fpdf2>=2.7      # regenerate tests/fixtures/sample.pdf
+xlwt>=1.3      # regenerate tests/fixtures/sample.xls

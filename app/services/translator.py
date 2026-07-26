@@ -8,8 +8,11 @@ from app.core.config import GEMINI_MODEL
 PROMPT_TEMPLATE = (
     "You are a professional translator. Translate the text below into "
     "{language}. Preserve the meaning, tone, and formatting of the "
-    "original. Return ONLY the translated text, with no explanations, "
-    "notes, or quotation marks around it.\n\n"
+    "original exactly — including numbers, dates, times, currency, and "
+    "nuances such as changes of plan or degree. Translate idioms to "
+    "natural equivalents in the target language. Return ONLY the "
+    "translated text, with no explanations, notes, or quotation marks "
+    "around it.\n\n"
     "Text to translate:\n{text}"
 )
 
