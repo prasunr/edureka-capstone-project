@@ -9,7 +9,7 @@ as an MP3 download. Run with:
 
 import streamlit as st
 
-from app.core.config import GEMINI_API_KEY
+from app.core.config import get_gemini_api_key
 from app.core.languages import LANGUAGES
 from app.services.translator import TranslationError, translate_text
 from app.services.tts import SpeechError, text_to_speech
@@ -31,7 +31,7 @@ st.caption(
 # --- Sidebar: API key + instructions ---
 with st.sidebar:
     st.header("Settings")
-    api_key = GEMINI_API_KEY
+    api_key = get_gemini_api_key()
     if api_key:
         st.success("Gemini API key loaded from .env")
     else:

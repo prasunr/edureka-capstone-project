@@ -3,7 +3,7 @@
 from google import genai
 from google.genai import errors as genai_errors
 
-from app.core.config import GEMINI_MODEL
+from app.core.config import get_gemini_model
 
 PROMPT_TEMPLATE = (
     "You are a professional translator. Translate the text below into "
@@ -31,7 +31,7 @@ def _friendly_message(exc: genai_errors.APIError) -> str:
         )
     if code == 404:
         return (
-            f"The model '{GEMINI_MODEL}' is not available to your API key. "
+            f"The model '{get_gemini_model()}' is not available to your API key. "
             "Set GEMINI_MODEL in your .env file to a model you have access to."
         )
     if code == 429:
@@ -52,7 +52,9 @@ def translate_text(text: str, target_language: str, api_key: str) -> str:
     client = genai.Client(api_key=api_key)
     prompt = PROMPT_TEMPLATE.format(language=target_language, text=text)
     try:
-        response = client.models.generate_content(model=GEMINI_MODEL, contents=prompt)
+        response = client.models.generate_content(
+            model=get_gemini_model(), contents=prompt
+        )
     except genai_errors.APIError as exc:
         raise TranslationError(_friendly_message(exc)) from exc
     except Exception as exc:

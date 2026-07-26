@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
-from app.core.config import GEMINI_API_KEY
+from app.core.config import get_gemini_api_key
 from app.core.languages import LANGUAGES
 from app.services.translator import translate_text
 from app.services.tts import text_to_speech
@@ -51,10 +51,11 @@ def translate(req: TranslateRequest) -> TranslateResponse:
         raise HTTPException(400, f"Unsupported language: {req.target_language}")
     if not req.text.strip():
         raise HTTPException(400, "Text must not be empty.")
-    if not GEMINI_API_KEY:
+    api_key = get_gemini_api_key()
+    if not api_key:
         raise HTTPException(500, "GEMINI_API_KEY is not configured on the server.")
     try:
-        translated = translate_text(req.text, req.target_language, GEMINI_API_KEY)
+        translated = translate_text(req.text, req.target_language, api_key)
     except Exception as exc:
         raise HTTPException(502, f"Translation failed: {exc}") from exc
     return TranslateResponse(
